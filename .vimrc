@@ -46,8 +46,6 @@ nmap <silent> <leader>ev :e $MYVIMRC<CR>
 nmap <silent> <leader>rv :so $MYVIMRC<CR>
 nmap <silent> <leader>/ :nohlsearch<CR>
 
-nnoremap gb :ls<CR>:b<Space>
-
 " Move between windows
 noremap <C-J> <C-W>j
 noremap <C-K> <C-W>k
@@ -76,12 +74,12 @@ autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 " Specify a directory for plugins (for Neovim: ~/.local/share/nvim/plugged)
 call plug#begin('~/.vim/plugged')
 
-Plug 'https://github.com/ctrlpvim/ctrlp.vim'
-Plug 'https://github.com/scrooloose/nerdtree'
-Plug 'https://github.com/pangloss/vim-javascript.git'
-Plug 'https://github.com/moll/vim-node.git'
-Plug 'https://github.com/editorconfig/editorconfig-vim.git'
-Plug 'https://github.com/vim-syntastic/syntastic.git'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'scrooloose/nerdtree'
+Plug 'pangloss/vim-javascript'
+Plug 'moll/vim-node'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'vim-syntastic/syntastic'
 Plug 'scrooloose/nerdcommenter'
 Plug 'jalvesaq/Nvim-R'
 Plug 'tpope/vim-surround'
@@ -90,15 +88,19 @@ Plug 'mileszs/ack.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'qpkorr/vim-bufkill'
-Plug 'ternjs/tern_for_vim'
-Plug 'lrvick/Conque-Shell'
-Plug 'tarruda/vim-conque-repl'
 Plug 'tpope/vim-fugitive'
+Plug 'godlygeek/tabular'
+Plug 'tpope/vim-ragtag'
+Plug 'vim-scripts/camelcasemotion'
 
 " Initialize plugin system
 call plug#end()
 
+" Nerdtree
+let NERDTreeShowHidden=1
+
 " Ctrl-P Customizations
+let g:ctrlp_root_markers = ['.ctrlp']
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 
 let g:ctrlp_custom_ignore = '\v[\/](node_modules|target|dist)|(\.(swp|ico|git|svn))$'
@@ -114,6 +116,7 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_loc_list_height = 3
 
 " Vim-Node
 autocmd User Node
@@ -134,6 +137,11 @@ let g:airline_powerline_fonts = 1
 let g:airline_theme = 'cool'
 set laststatus=2
 
+" Ragtag
+inoremap <M-o> <Esc>o
+inoremap <C-j> <Down>
+let g:ragtag_global_maps = 1
+
 fun! TrimWhitespace()
   let l:save = winsaveview()
   %s/\s\+$//e
@@ -142,4 +150,14 @@ endfun
 
 command! TrimWhitespace call TrimWhitespace()
 
-noremap <Leader>w :call TrimWhitespace()<CR>
+noremap <Leader>tw :call TrimWhitespace()<CR>
+
+" For cygwin/mintty
+let &t_ti.="\e[1 q"
+let &t_SI.="\e[5 q"
+let &t_EI.="\e[1 q"
+let &t_te.="\e[0 q"
+
+" Color Scheme
+syntax enable
+colorscheme monokai
