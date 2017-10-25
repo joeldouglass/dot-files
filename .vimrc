@@ -45,27 +45,9 @@ set statusline+=%=L:\ %P/%L\ C:\ %c
 let mapleader=","
 let maplocalleader=" "
 
-if !has('nvim')
-  nmap <silent> <leader>ev :e $MYVIMRC<CR>
-  nmap <silent> <leader>rv :so $MYVIMRC<CR>
-  nmap <silent> <leader>/ :nohlsearch<CR>
-endif
-
-if has('nvim')
-  nmap <silent> <leader>ev :e ~/.vimrc<CR>
-  nmap <silent> <leader>rv :so ~/.vimrc<CR>
-  nmap <silent> <leader>/ :nohlsearch<CR>
-endif
-
-" Move between windows
-"nnoremap <C-h> <C-w>h
-"nnoremap <C-j> <C-w>j
-"nnoremap <C-k> <C-w>k
-"nnoremap <C-l> <C-w>l
-"inoremap <C-h> <C-\><C-N><C-w>h
-"inoremap <C-j> <C-\><C-N><C-w>j
-"inoremap <C-k> <C-\><C-N><C-w>k
-"inoremap <C-l> <C-\><C-N><C-w>l
+nmap <silent> <leader>ev :e $MYVIMRC<CR>
+nmap <silent> <leader>rv :so $MYVIMRC<CR>
+nmap <silent> <leader>/ :nohlsearch<CR>
 
 " Remap scrolling to be faster
 noremap <C-E> 10<C-E>
@@ -100,15 +82,6 @@ nnoremap <leader>rr yiw:%s/\<<C-r>"\>//gc<left><left><left>
 noremap <C-S> :w<CR>
 inoremap <C-S> <ESC>:w<CR>
 
-" Nvim terminal settings
-if has('nvim')
-  tnoremap <Esc> <C-\><C-n>
-  tnoremap <A-h> <C-\><C-N><C-w>h
-  tnoremap <A-j> <C-\><C-N><C-w>j
-  tnoremap <A-k> <C-\><C-N><C-w>k
-  tnoremap <A-l> <C-\><C-N><C-w>l
-endif
-
 filetype plugin on
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 
@@ -142,23 +115,15 @@ Plug 'christoomey/vim-tmux-navigator'
 " Initialize plugin system
 call plug#end()
 
-" Nerdtree
+" NERDTree
 let NERDTreeShowHidden=1
+" NERDTree Customizations
+map <C-n> :NERDTreeToggle<CR>
 
 " Ctrl-P Customizations
 let g:ctrlp_root_markers = ['.ctrlp']
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files --cached --exclude-standard --others']
-
-"let g:ctrlp_custom_ignore = '\v[\/](node_modules|target|dist)|(\.(swp|ico|git|svn))$'
-
-"let g:ctrlp_custom_ignore = {
-  "\ 'dir': '\.git$\|\.hg$\|\.svn$\|\.yardoc$\|\node_modules$',
-  "\ 'file': '\.exe$\|\.so$\|\.dat$\|\.swp$'
-  "\ }
 let g:ctrlp_cmd = 'CtrlPLastMode'
-
-" NERDTree Customizations
-map <C-n> :NERDTreeToggle<CR>
 
 " Syntastic
 let g:syntastic_always_populate_loc_list = 1
@@ -193,6 +158,7 @@ inoremap <C-j> <Down>
 let g:ragtag_global_maps = 1
 
 " Unmap some buffkill stuff that is conflicting with other mappings
+" Do I need this?
 "unmap <leader>ba
 "unmap <leader>bundo
 "unmap <leader>!bw
@@ -203,7 +169,6 @@ let g:ragtag_global_maps = 1
 "unmap <leader>!bun
 "unmap <leader>bf
 "unmap <leader>bb
-
 
 " Reason formatting
 " Wrap at the window width but not if it exceeds 120 characters.
@@ -219,10 +184,6 @@ endfun
 command! TrimWhitespace call TrimWhitespace()
 
 noremap <Leader>tw :call TrimWhitespace()<CR>
-
-" Nvim R
-let R_in_buffer = 0
-let R_tmux_split = 1
 
 " Fugitive
 function! GStatusTabDiff()
@@ -240,17 +201,11 @@ command! GStatusTabDiff call GStatusTabDiff()
 autocmd FileType gitcommit noremap <buffer> dt :GStatusTabDiff<CR>
 
 " For cygwin/mintty
-" Cursor style for edit/insert
-"if !has('nvim')
-  let &t_ti.="\e[1 q"
-  let &t_SI.="\e[5 q"
-  let &t_EI.="\e[1 q"
-  let &t_te.="\e[0 q"
-"endif
-
-if has('nvim')
-  let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
-endif
+" Cursor style for edit/insert (need this for SSH from windows)
+let &t_ti.="\e[1 q"
+let &t_SI.="\e[5 q"
+let &t_EI.="\e[1 q"
+let &t_te.="\e[0 q"
 
 " Color Scheme
 syntax enable
