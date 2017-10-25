@@ -1,13 +1,13 @@
 set encoding=utf-8
 set path+=**
-let g:slime_target = "conemu"
 
 set complete-=i
 
-set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe
+set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.idea/*,*/.DS_Store,*/tmp/*,*.swp,*.zip,*.exe
 set wildignore+=*.bmp,*.gif,*.ico,*.jpg,*.png
-set wildignore+=**\\node_modules
+set wildignore+=*/node_modules
 
+set noesckeys
 set wildmenu
 set hidden
 set relativenumber
@@ -31,10 +31,13 @@ set noerrorbells
 set nowrap
 set mouse=a
 
+set autoread
+
 set statusline=
 set statusline+=\ %m%r
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%{ObsessionStatus()}
 set statusline+=%*
 set statusline+=\ %f
 set statusline+=%=L:\ %P/%L\ C:\ %c
@@ -42,15 +45,27 @@ set statusline+=%=L:\ %P/%L\ C:\ %c
 let mapleader=","
 let maplocalleader=" "
 
-nmap <silent> <leader>ev :e $MYVIMRC<CR>
-nmap <silent> <leader>rv :so $MYVIMRC<CR>
-nmap <silent> <leader>/ :nohlsearch<CR>
+if !has('nvim')
+  nmap <silent> <leader>ev :e $MYVIMRC<CR>
+  nmap <silent> <leader>rv :so $MYVIMRC<CR>
+  nmap <silent> <leader>/ :nohlsearch<CR>
+endif
+
+if has('nvim')
+  nmap <silent> <leader>ev :e ~/.vimrc<CR>
+  nmap <silent> <leader>rv :so ~/.vimrc<CR>
+  nmap <silent> <leader>/ :nohlsearch<CR>
+endif
 
 " Move between windows
-noremap <C-J> <C-W>j
-noremap <C-K> <C-W>k
-noremap <C-L> <C-W>l
-noremap <C-H> <C-W>h
+"nnoremap <C-h> <C-w>h
+"nnoremap <C-j> <C-w>j
+"nnoremap <C-k> <C-w>k
+"nnoremap <C-l> <C-w>l
+"inoremap <C-h> <C-\><C-N><C-w>h
+"inoremap <C-j> <C-\><C-N><C-w>j
+"inoremap <C-k> <C-\><C-N><C-w>k
+"inoremap <C-l> <C-\><C-N><C-w>l
 
 " Remap scrolling to be faster
 noremap <C-E> 10<C-E>
@@ -68,6 +83,32 @@ noremap <leader>8 8gt
 noremap <leader>9 9gt
 noremap <leader>0 :tablast<cr>
 
+" vimdiff diffget mappings.
+map <leader>ml :diffget LOCAL<CR>:diffupdate<CR>
+map <leader>mb :diffget BASE<CR>:diffupdate<CR>
+map <leader>mr :diffget REMOTE<CR>:diffupdate<CR>
+
+noremap <leader>tc :tabclose<cr>
+
+" Help find and replace
+nnoremap <leader>ry "zyiw
+vnoremap <leader>ry "zy
+nnoremap <leader>rs yiw:%s/<C-r>"/<C-r>z/gc<cr>y
+nnoremap <leader>rr yiw:%s/\<<C-r>"\>//gc<left><left><left>
+
+" Save
+noremap <C-S> :w<CR>
+inoremap <C-S> <ESC>:w<CR>
+
+" Nvim terminal settings
+if has('nvim')
+  tnoremap <Esc> <C-\><C-n>
+  tnoremap <A-h> <C-\><C-N><C-w>h
+  tnoremap <A-j> <C-\><C-N><C-w>j
+  tnoremap <A-k> <C-\><C-N><C-w>k
+  tnoremap <A-l> <C-\><C-N><C-w>l
+endif
+
 filetype plugin on
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 
@@ -77,12 +118,12 @@ call plug#begin('~/.vim/plugged')
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
 Plug 'moll/vim-node'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'vim-syntastic/syntastic'
 Plug 'scrooloose/nerdcommenter'
 Plug 'jalvesaq/Nvim-R'
-Plug 'tpope/vim-surround'
 Plug 'jpalardy/vim-slime'
 Plug 'mileszs/ack.vim'
 Plug 'vim-airline/vim-airline'
@@ -91,7 +132,12 @@ Plug 'qpkorr/vim-bufkill'
 Plug 'tpope/vim-fugitive'
 Plug 'godlygeek/tabular'
 Plug 'tpope/vim-ragtag'
+Plug 'tpope/vim-obsession'
 Plug 'vim-scripts/camelcasemotion'
+Plug 'tpope/tpope-vim-abolish'
+Plug 'reasonml-editor/vim-reason'
+Plug 'purescript-contrib/purescript-vim'
+Plug 'christoomey/vim-tmux-navigator'
 
 " Initialize plugin system
 call plug#end()
@@ -101,10 +147,14 @@ let NERDTreeShowHidden=1
 
 " Ctrl-P Customizations
 let g:ctrlp_root_markers = ['.ctrlp']
-let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files --cached --exclude-standard --others']
 
-let g:ctrlp_custom_ignore = '\v[\/](node_modules|target|dist)|(\.(swp|ico|git|svn))$'
+"let g:ctrlp_custom_ignore = '\v[\/](node_modules|target|dist)|(\.(swp|ico|git|svn))$'
 
+"let g:ctrlp_custom_ignore = {
+  "\ 'dir': '\.git$\|\.hg$\|\.svn$\|\.yardoc$\|\node_modules$',
+  "\ 'file': '\.exe$\|\.so$\|\.dat$\|\.swp$'
+  "\ }
 let g:ctrlp_cmd = 'CtrlPLastMode'
 
 " NERDTree Customizations
@@ -142,6 +192,24 @@ inoremap <M-o> <Esc>o
 inoremap <C-j> <Down>
 let g:ragtag_global_maps = 1
 
+" Unmap some buffkill stuff that is conflicting with other mappings
+"unmap <leader>ba
+"unmap <leader>bundo
+"unmap <leader>!bw
+"unmap <leader>bw
+"unmap <leader>!bd
+"unmap <leader>bd
+"unmap <leader>bun
+"unmap <leader>!bun
+"unmap <leader>bf
+"unmap <leader>bb
+
+
+" Reason formatting
+" Wrap at the window width but not if it exceeds 120 characters.
+let g:vimreason_extra_args_expr_reason = '"--print-width " . ' .  "min([120, winwidth('.')])"
+autocmd FileType reason map <buffer> <C-A><C-F> :ReasonPrettyPrint<cr>
+
 fun! TrimWhitespace()
   let l:save = winsaveview()
   %s/\s\+$//e
@@ -152,11 +220,37 @@ command! TrimWhitespace call TrimWhitespace()
 
 noremap <Leader>tw :call TrimWhitespace()<CR>
 
+" Nvim R
+let R_in_buffer = 0
+let R_tmux_split = 1
+
+" Fugitive
+function! GStatusTabDiff()
+  if has('multi_byte_encoding')
+    let colon = '\%(:\|\%uff1a\)'
+  else
+    let colon = ':'
+  endif
+  let filename = matchstr(matchstr(getline(line('.')),'^#\t\zs.\{-\}\ze\%( ([^()[:digit:]]\+)\)\=$'), colon.' *\zs.*')
+  tabedit %
+  execute ':Gedit ' . filename
+  Gvdiff
+endfunction
+command! GStatusTabDiff call GStatusTabDiff()
+autocmd FileType gitcommit noremap <buffer> dt :GStatusTabDiff<CR>
+
 " For cygwin/mintty
-let &t_ti.="\e[1 q"
-let &t_SI.="\e[5 q"
-let &t_EI.="\e[1 q"
-let &t_te.="\e[0 q"
+" Cursor style for edit/insert
+"if !has('nvim')
+  let &t_ti.="\e[1 q"
+  let &t_SI.="\e[5 q"
+  let &t_EI.="\e[1 q"
+  let &t_te.="\e[0 q"
+"endif
+
+if has('nvim')
+  let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+endif
 
 " Color Scheme
 syntax enable
