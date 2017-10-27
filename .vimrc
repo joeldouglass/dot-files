@@ -170,6 +170,10 @@ let g:ragtag_global_maps = 1
 "unmap <leader>bf
 "unmap <leader>bb
 
+" Nvim R
+let R_in_buffer = 0
+let R_tmux_split = 1
+
 " Reason formatting
 " Wrap at the window width but not if it exceeds 120 characters.
 let g:vimreason_extra_args_expr_reason = '"--print-width " . ' .  "min([120, winwidth('.')])"
@@ -206,6 +210,10 @@ let &t_ti.="\e[1 q"
 let &t_SI.="\e[5 q"
 let &t_EI.="\e[1 q"
 let &t_te.="\e[0 q"
+
+" Special syntax mappings
+au BufNewFile,BufRead .eslintrc set filetype=json
+au BufNewFile,BufRead .eslintrc set syntax=json
 
 " Color Scheme
 syntax enable
