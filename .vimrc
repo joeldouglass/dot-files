@@ -49,6 +49,9 @@ nmap <silent> <leader>ev :e $MYVIMRC<CR>
 nmap <silent> <leader>rv :so $MYVIMRC<CR>
 nmap <silent> <leader>/ :nohlsearch<CR>
 
+" Disable ex mode
+nnoremap Q <nop>
+
 " Remap scrolling to be faster
 noremap <C-E> 10<C-E>
 noremap <C-Y> 10<C-Y>
@@ -82,6 +85,14 @@ nnoremap <leader>rr yiw:%s/\<<C-r>"\>//gc<left><left><left>
 noremap <C-S> :w<CR>
 inoremap <C-S> <ESC>:w<CR>
 
+" Macros
+xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
+
+function! ExecuteMacroOverVisualRange()
+  echo "@".getcmdline()
+  execute ":'<,'>normal @".nr2char(getchar())
+endfunction
+
 filetype plugin on
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 
@@ -102,15 +113,18 @@ Plug 'mileszs/ack.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'qpkorr/vim-bufkill'
-Plug 'tpope/vim-fugitive'
 Plug 'godlygeek/tabular'
-Plug 'tpope/vim-ragtag'
-Plug 'tpope/vim-obsession'
 Plug 'vim-scripts/camelcasemotion'
-Plug 'tpope/tpope-vim-abolish'
 Plug 'reasonml-editor/vim-reason'
 Plug 'purescript-contrib/purescript-vim'
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-ragtag'
+Plug 'tpope/vim-obsession'
+Plug 'tpope/tpope-vim-abolish'
+Plug 'tpope/vim-unimpaired'
+Plug 'chrisbra/csv.vim'
+Plug 'reedes/vim-pencil'
 
 " Initialize plugin system
 call plug#end()
@@ -179,6 +193,9 @@ let R_tmux_split = 1
 let g:vimreason_extra_args_expr_reason = '"--print-width " . ' .  "min([120, winwidth('.')])"
 autocmd FileType reason map <buffer> <C-A><C-F> :ReasonPrettyPrint<cr>
 
+" Disable auto comment
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+
 fun! TrimWhitespace()
   let l:save = winsaveview()
   %s/\s\+$//e
@@ -188,6 +205,20 @@ endfun
 command! TrimWhitespace call TrimWhitespace()
 
 noremap <Leader>tw :call TrimWhitespace()<CR>
+
+fun! NoNum()
+  set norelativenumber
+  set nonumber
+endfun
+
+command! NoNum call NoNum()
+
+fun! Num()
+  set relativenumber
+  set number
+endfun
+
+command! Num call Num()
 
 " Fugitive
 function! GStatusTabDiff()
@@ -204,6 +235,9 @@ endfunction
 command! GStatusTabDiff call GStatusTabDiff()
 autocmd FileType gitcommit noremap <buffer> dt :GStatusTabDiff<CR>
 
+" Pencil
+let g:pencil#textwidth = 100
+
 " For cygwin/mintty
 " Cursor style for edit/insert (need this for SSH from windows)
 let &t_ti.="\e[1 q"
@@ -218,3 +252,4 @@ au BufNewFile,BufRead .eslintrc set syntax=json
 " Color Scheme
 syntax enable
 colorscheme monokai
+
