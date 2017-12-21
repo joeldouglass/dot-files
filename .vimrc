@@ -1,4 +1,5 @@
 set encoding=utf-8
+
 set path+=**
 
 set complete-=i
@@ -75,12 +76,6 @@ map <leader>mr :diffget REMOTE<CR>:diffupdate<CR>
 
 noremap <leader>tc :tabclose<cr>
 
-" Help find and replace
-nnoremap <leader>ry "zyiw
-vnoremap <leader>ry "zy
-nnoremap <leader>rs yiw:%s/<C-r>"/<C-r>z/gc<cr>y
-nnoremap <leader>rr yiw:%s/\<<C-r>"\>//gc<left><left><left>
-
 " Save
 noremap <C-S> :w<CR>
 inoremap <C-S> <ESC>:w<CR>
@@ -99,7 +94,6 @@ autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 " Specify a directory for plugins (for Neovim: ~/.local/share/nvim/plugged)
 call plug#begin('~/.vim/plugged')
 
-Plug 'ctrlpvim/ctrlp.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
@@ -108,13 +102,12 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'vim-syntastic/syntastic'
 Plug 'scrooloose/nerdcommenter'
 Plug 'jalvesaq/Nvim-R'
-Plug 'jpalardy/vim-slime'
 Plug 'mileszs/ack.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'qpkorr/vim-bufkill'
 Plug 'godlygeek/tabular'
-Plug 'vim-scripts/camelcasemotion'
+Plug 'bkad/CamelCaseMotion'
 Plug 'reasonml-editor/vim-reason'
 Plug 'purescript-contrib/purescript-vim'
 Plug 'christoomey/vim-tmux-navigator'
@@ -125,6 +118,8 @@ Plug 'tpope/tpope-vim-abolish'
 Plug 'tpope/vim-unimpaired'
 Plug 'chrisbra/csv.vim'
 Plug 'reedes/vim-pencil'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 
 " Initialize plugin system
 call plug#end()
@@ -134,10 +129,10 @@ let NERDTreeShowHidden=1
 " NERDTree Customizations
 map <C-n> :NERDTreeToggle<CR>
 
-" Ctrl-P Customizations
-let g:ctrlp_root_markers = ['.ctrlp']
-let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files --cached --exclude-standard --others']
-let g:ctrlp_cmd = 'CtrlPLastMode'
+" FZF
+nnoremap ;h :History<CR>
+nnoremap ;b :Buffers<CR>
+nnoremap ;f :Files<CR>
 
 " Syntastic
 let g:syntastic_always_populate_loc_list = 1
@@ -157,6 +152,9 @@ autocmd User Node
 " Silver searcher
 let g:ackprg = 'ag --nogroup --nocolor --column'
 
+" BufKill
+let g:BufKillCreateMappings = 0
+
 " TERN
 let g:tern_map_keys=1
 let g:tern_show_argument_hints='on_hold'
@@ -166,23 +164,21 @@ let g:airline_powerline_fonts = 1
 let g:airline_theme = 'cool'
 set laststatus=2
 
+" CamelCaseMotion
+map <leader>w <Plug>CamelCaseMotion_w
+map <leader>b <Plug>CamelCaseMotion_b
+map <leader>e <Plug>CamelCaseMotion_e
+omap <silent> <leader>iw <Plug>CamelCaseMotion_iw
+xmap <silent> <leader>iw <Plug>CamelCaseMotion_iw
+omap <silent> <leader>ib <Plug>CamelCaseMotion_ib
+xmap <silent> <leader>ib <Plug>CamelCaseMotion_ib
+omap <silent> <leader>ie <Plug>CamelCaseMotion_ie
+xmap <silent> <leader>ie <Plug>CamelCaseMotion_ie
+
 " Ragtag
 inoremap <M-o> <Esc>o
 inoremap <C-j> <Down>
 let g:ragtag_global_maps = 1
-
-" Unmap some buffkill stuff that is conflicting with other mappings
-" Do I need this?
-"unmap <leader>ba
-"unmap <leader>bundo
-"unmap <leader>!bw
-"unmap <leader>bw
-"unmap <leader>!bd
-"unmap <leader>bd
-"unmap <leader>bun
-"unmap <leader>!bun
-"unmap <leader>bf
-"unmap <leader>bb
 
 " Nvim R
 let R_in_buffer = 0

@@ -160,6 +160,9 @@ if ! shopt -oq posix; then
   fi
 fi
 
+export FZF_DEFAULT_COMMAND='ag -g ""'
+export FZF_CTRL_T_COMMAND='ag -g ""'
+
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
@@ -180,5 +183,6 @@ stty -ixon
 
 # set current node version
 nvm use v7.7.3
+
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
