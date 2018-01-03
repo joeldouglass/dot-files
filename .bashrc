@@ -122,15 +122,6 @@ mnt-vbox-share() {
   fi
 }
 
-#mnt-shared() {
-  #mnt-vbox-share shared
-  #mnt-vbox-share GitHost
-#}
-
-# NODE
-#alias node='NVM_BIN/node'
-#alias npm='NVM_BIN/npm'
-
 alias tma='tmux attach -t $1'
 if [ -f /etc/bash_completion.d/tmux-attach ]; then
   . /etc/bash_completion.d/tmux-attach
@@ -161,7 +152,7 @@ if ! shopt -oq posix; then
 fi
 
 export FZF_DEFAULT_COMMAND='ag -g ""'
-export FZF_CTRL_T_COMMAND='ag -g ""'
+#export FZF_CTRL_T_COMMAND='ag -g ""'
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -183,6 +174,5 @@ stty -ixon
 
 # set current node version
 nvm use v7.7.3
-
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
