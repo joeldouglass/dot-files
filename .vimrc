@@ -53,6 +53,8 @@ nmap <silent> <leader>/ :nohlsearch<CR>
 " Disable ex mode
 nnoremap Q <nop>
 
+map <leader>* *N
+
 " Remap scrolling to be faster
 noremap <C-E> 10<C-E>
 noremap <C-Y> 10<C-Y>
@@ -76,6 +78,9 @@ map <leader>mr :diffget REMOTE<CR>:diffupdate<CR>
 
 noremap <leader>tc :tabclose<cr>
 
+" Format Document
+map <leader>f mzgg=G`z
+
 " Save
 noremap <C-S> :w<CR>
 inoremap <C-S> <ESC>:w<CR>
@@ -87,6 +92,13 @@ function! ExecuteMacroOverVisualRange()
   echo "@".getcmdline()
   execute ":'<,'>normal @".nr2char(getchar())
 endfunction
+
+" Quick switch buffer
+function! SwitchBuffer()
+  b#
+endfunction
+
+nmap ;l :call SwitchBuffer()<CR>
 
 filetype plugin on
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
