@@ -214,6 +214,8 @@ command! TrimWhitespace call TrimWhitespace()
 
 noremap <Leader>tw :call TrimWhitespace()<CR>
 
+autocmd BufWritePre *.js call TrimWhitespace()
+
 fun! NoNum()
   set norelativenumber
   set nonumber
