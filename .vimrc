@@ -43,8 +43,8 @@ set statusline+=%*
 set statusline+=\ %f
 set statusline+=%=L:\ %P/%L\ C:\ %c
 
-let mapleader=","
-let maplocalleader=" "
+let mapleader=" "
+let maplocalleader="\\"
 
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
 nmap <silent> <leader>rv :so $MYVIMRC<CR>
@@ -54,6 +54,10 @@ nmap <silent> <leader>/ :nohlsearch<CR>
 nnoremap Q <nop>
 
 map <leader>* *N
+
+" Time - Entry
+map <leader>tn i( <ESC>"=strftime("%a %m-%d %I:%M %p")<CR>Pa) 
+map <leader>tt 0f)w"zy$Go<ESC><leader>tn<C-R>z
 
 " Remap scrolling to be faster
 noremap <C-E> 10<C-E>
@@ -98,7 +102,7 @@ function! SwitchBuffer()
   b#
 endfunction
 
-nmap ;l :call SwitchBuffer()<CR>
+nmap ,m :call SwitchBuffer()<CR>
 
 filetype plugin on
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
@@ -132,6 +136,7 @@ Plug 'chrisbra/csv.vim'
 Plug 'reedes/vim-pencil'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'ryanoasis/vim-devicons'
 
 " Initialize plugin system
 call plug#end()
@@ -139,12 +144,12 @@ call plug#end()
 " NERDTree
 let NERDTreeShowHidden=1
 " NERDTree Customizations
-map <C-n> :NERDTreeToggle<CR>
+map ,n :NERDTreeToggle<CR>
 
 " FZF
-nnoremap ;h :History<CR>
-nnoremap ;b :Buffers<CR>
-nnoremap ;f :Files<CR>
+nnoremap ,h :History<CR>
+nnoremap ,b :Buffers<CR>
+nnoremap ,f :Files<CR>
 
 " Syntastic
 let g:syntastic_always_populate_loc_list = 1
@@ -263,3 +268,5 @@ au BufNewFile,BufRead .eslintrc set syntax=json
 syntax enable
 colorscheme monokai
 
+" Dev icons
+let g:WebDevIconsUnicodeDecorateFolderNodes = 1

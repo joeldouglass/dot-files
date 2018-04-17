@@ -173,6 +173,6 @@ complete -F _watson_complete w
 stty -ixon
 
 # set current node version
-nvm use v7.7.3
+nvm use v8.11.1
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
