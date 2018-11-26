@@ -165,6 +165,8 @@ PS1="$PS1 \[\e[37m\][\t]\[\e[0m\]"
 source ~/.git-prompt.sh
 PS1="$PS1\[\e[31m\]\$(__git_ps1)\[\e[0m\] \$ "
 
+alias ghh='git log --graph --pretty=format:"(%ad) %h %s"'
+
 # Watson
 alias w='watson'
 complete -F _watson_complete w
