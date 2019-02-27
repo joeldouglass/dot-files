@@ -1,0 +1,35 @@
+[user]
+	name = Joel Douglass
+	email = joel.douglass@velir.com
+[alias]
+	graph = log --decorate --abbrev-commit --oneline --graph
+[diff]
+	tool = beyondcompare
+	guitool = beyondcompare3
+[difftool "beyondcompare"]
+	cmd = beyondcompare.sh \"$LOCAL\" \"$REMOTE\"
+[difftool]
+	prompt = false
+[difftool "BeyondCompare3"]
+	path = C:/Program Files (x86)/Beyond Compare 3/bcomp.exe
+[core]
+	visual = vim
+	editor = vim
+	autocrlf = false
+	longpaths = true
+[difftool "beyondcompare3"]
+	path = C:/Program Files (x86)/Beyond Compare 3/bcomp.exe
+	cmd = \"C:/Program Files (x86)/Beyond Compare 3/bcomp.exe\" \"$LOCAL\" \"$REMOTE\"
+[merge]
+	tool = BeyondCompare3
+[mergetool "BeyondCompare3"]
+	path = C:/Program Files (x86)/Beyond Compare 3/bcomp.exe
+	cmd = \"C:/Program Files (x86)/Beyond Compare 3/bcomp.exe\" \"$LOCAL\" \"$REMOTE\" \"$BASE\" \"$MERGED\"
+[push]
+	default = matching
+[mergetool "beyondcompare3"]
+	cmd = \"c:/program files (x86)/beyond compare 3/bcomp.exe\" \"\" \"\" \"\" \"\"
+[mergetool]
+	keepBackup = false
+[credential]
+	helper = !\\\"C:/Program Files (x86)/GitExtensions/GitCredentialWinStore/git-credential-winstore.exe\\\"
