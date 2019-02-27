@@ -127,7 +127,7 @@ Plug 'bkad/CamelCaseMotion'
 Plug 'reasonml-editor/vim-reason'
 Plug 'purescript-contrib/purescript-vim'
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'tpope/vim-fugitive'
+Plug 'joeldouglass/vim-fugitive', { 'branch': 'add_tabbed_diff' }
 Plug 'tpope/vim-ragtag'
 Plug 'tpope/vim-obsession'
 Plug 'tpope/tpope-vim-abolish'
@@ -145,6 +145,7 @@ call plug#end()
 let NERDTreeShowHidden=1
 " NERDTree Customizations
 map ,n :NERDTreeToggle<CR>
+let g:NERDTreeNodeDelimiter = "\u00a0"
 
 " FZF
 nnoremap ,h :History<CR>
@@ -234,21 +235,6 @@ fun! Num()
 endfun
 
 command! Num call Num()
-
-" Fugitive
-function! GStatusTabDiff()
-  if has('multi_byte_encoding')
-    let colon = '\%(:\|\%uff1a\)'
-  else
-    let colon = ':'
-  endif
-  let filename = matchstr(matchstr(getline(line('.')),'^#\t\zs.\{-\}\ze\%( ([^()[:digit:]]\+)\)\=$'), colon.' *\zs.*')
-  tabedit %
-  execute ':Gedit ' . filename
-  Gvdiff
-endfunction
-command! GStatusTabDiff call GStatusTabDiff()
-autocmd FileType gitcommit noremap <buffer> dt :GStatusTabDiff<CR>
 
 " Pencil
 let g:pencil#textwidth = 100

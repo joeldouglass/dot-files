@@ -163,7 +163,7 @@ PS1="$PS1 \[\e[37m\][\t]\[\e[0m\]"
 
 #Git Prompt
 source ~/.git-prompt.sh
-PS1="$PS1\[\e[31m\]\$(__git_ps1)\[\e[0m\] \$ "
+PS1="$PS1\[\e[31m\]\[\e[0m\] \$ "
 
 alias ghh='git log --graph --pretty=format:"(%ad) %h %s"'
 
