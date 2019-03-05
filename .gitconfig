@@ -14,3 +14,5 @@
 	default = matching
 [mergetool]
 	keepBackup = false
+[oh-my-zsh]
+	hide-dirty = 1
