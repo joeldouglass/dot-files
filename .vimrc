@@ -56,8 +56,8 @@ nnoremap Q <nop>
 map <leader>* *N
 
 " Time - Entry
-map <leader>tn i( <ESC>"=strftime("%a %m-%d %I:%M %p")<CR>Pa) 
-map <leader>tt 0f)w"zy$Go<ESC><leader>tn<C-R>z
+map <leader>tn Go( <ESC>"=strftime("%a %m-%d %I:%M %p")<CR>Pa) 
+map <leader>tt 0f)w"zy$G<ESC><leader>tn<C-R>z
 
 " Remap scrolling to be faster
 noremap <C-E> 10<C-E>
