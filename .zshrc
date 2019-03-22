@@ -109,7 +109,6 @@ zle -N zle-keymap-select
 
 # Pass crtl s through
 alias vim="stty stop '' -ixoff ; vim"
-alias mntwindev="mount_smbfs //joeld@windev/c ~/mnt/windev"
 
 autoload bashcompinit
 bashcompinit
@@ -122,3 +121,10 @@ export NVM_DIR="$HOME/.nvm"
   [ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"  # This loads nvm bash_completion
 
 export FZF_DEFAULT_COMMAND='ag -g ""'
+
+# Windows VM commands
+alias winmnt="mount_smbfs //'DESKTOP-0NAOUDN;MacGuest':Passw0rd@windev/Projects ~/mnt/windev"
+alias winon="VBoxManage startvm Windows --type headless"
+alias winsave="VBoxManage controlvm Windows savestate"
+alias winstate="VBoxManage showvminfo Windows | grep 'State'"
+alias winunplug="VBoxManage controlvm Windows poweroff"
