@@ -1,4 +1,5 @@
 set encoding=utf-8
+set nofsync
 
 set path+=**
 
@@ -31,6 +32,8 @@ set visualbell
 set noerrorbells
 set nowrap
 set mouse=a
+
+set guifont=Droid\ Sans\ Mono\ Nerd\ Font\ Complete:h14
 
 set autoread
 
@@ -137,6 +140,7 @@ Plug 'reedes/vim-pencil'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'ryanoasis/vim-devicons'
+Plug 'sharat87/roast.vim'
 
 " Initialize plugin system
 call plug#end()
