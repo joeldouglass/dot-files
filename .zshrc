@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="~/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -62,7 +62,7 @@ HYPHEN_INSENSITIVE="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git ssh-agent fzf)
+plugins=(git ssh-agent)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -128,3 +128,9 @@ alias winon="VBoxManage startvm Windows --type headless"
 alias winsave="VBoxManage controlvm Windows savestate"
 alias winstate="VBoxManage showvminfo Windows | grep 'State'"
 alias winunplug="VBoxManage controlvm Windows poweroff"
+
+set -o vi
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export FZF_DEFAULT_OPS="--extended"
+
+export PATH=/opt/local/bin:/opt/local/sbin:$PATH

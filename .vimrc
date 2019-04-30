@@ -5,7 +5,7 @@ set path+=**
 
 set complete-=i
 
-set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.idea/*,*/.DS_Store,*/tmp/*,*.swp,*.zip,*.exe
+set wildignore+=*.pyc,*/.git/*,*/.hg/*,*/.svn/*,*/.idea/*,*/.DS_Store,*/tmp/*,*.swp,*.zip,*.exe
 set wildignore+=*.bmp,*.gif,*.ico,*.jpg,*.png
 set wildignore+=*/node_modules
 
@@ -32,6 +32,9 @@ set visualbell
 set noerrorbells
 set nowrap
 set mouse=a
+
+set timeoutlen=1000
+set ttimeoutlen=10
 
 set guifont=Droid\ Sans\ Mono\ Nerd\ Font\ Complete:h14
 
@@ -150,6 +153,7 @@ let NERDTreeShowHidden=1
 " NERDTree Customizations
 map ,n :NERDTreeToggle<CR>
 let g:NERDTreeNodeDelimiter = "\u00a0"
+let NERDTreeRespectWildIgnore=1
 
 " FZF
 nnoremap ,h :History<CR>
@@ -260,3 +264,8 @@ colorscheme monokai
 
 " Dev icons
 let g:WebDevIconsUnicodeDecorateFolderNodes = 1
+
+" Ctags
+set tags=tags
+
+command! PyBr :normal Oimport pdb;pdb.set_trace()<ESC>
