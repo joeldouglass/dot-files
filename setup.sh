@@ -23,7 +23,7 @@ rm -r $HOME/.oh-my-zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
 # Copy oh my zsh configs back in
-cp -a ./.oh-my-zsh/* $HOME/.oh-my-zsh/
+cp -a $HOME/dot-files/.oh-my-zsh/* $HOME/.oh-my-zsh/
 source $HOME/.zshrc
 
 # Install vimplug
@@ -32,5 +32,7 @@ curl -fLo $HOME/.vim/autoload/plug.vim --create-dirs \
 
 # Install vim plugs
 vim +PlugInstall +qall
+
+rm -rf $HOME/dot-files
 
 echo "done!" > $HOME/.setupdone
