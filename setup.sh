@@ -14,6 +14,7 @@ cp -a ./ $HOME/
 # Install and setup zsh
 sudo apt-get install zsh
 chsh -s $(which zsh)
+zsh
 
 # Remove this for now
 rm -r $HOME/.oh-my-zsh
@@ -22,7 +23,8 @@ rm -r $HOME/.oh-my-zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
 # Copy oh my zsh configs back in
-cp -a ./.oh-my-zsh $HOME/.oh-my-zsh/
+cp -a ./.oh-my-zsh/* $HOME/.oh-my-zsh/
+source $HOME/.zshrc
 
 # Install vimplug
 curl -fLo $HOME/.vim/autoload/plug.vim --create-dirs \
