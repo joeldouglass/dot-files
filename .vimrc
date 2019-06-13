@@ -140,10 +140,10 @@ Plug 'tpope/tpope-vim-abolish'
 Plug 'tpope/vim-unimpaired'
 Plug 'chrisbra/csv.vim'
 Plug 'reedes/vim-pencil'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'ryanoasis/vim-devicons'
 Plug 'sharat87/roast.vim'
+Plug 'JamshedVesuna/vim-markdown-preview'
 
 " Initialize plugin system
 call plug#end()
@@ -267,5 +267,8 @@ let g:WebDevIconsUnicodeDecorateFolderNodes = 1
 
 " Ctags
 set tags=tags
+
+" Markdown
+let vim_markdown_preview_github=1
 
 command! PyBr :normal Oimport pdb;pdb.set_trace()<ESC>
