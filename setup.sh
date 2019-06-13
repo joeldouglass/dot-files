@@ -23,6 +23,7 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/mas
 
 # Copy oh my zsh configs back in
 cp $HOME/dot-files/.oh-my-zsh/themes/joel.zsh-theme $HOME/.oh-my-zsh/themes
+cp $HOME/dot-files/.zshrc $HOME
 
 # Install vimplug
 curl -fLo $HOME/.vim/autoload/plug.vim --create-dirs \
