@@ -140,6 +140,7 @@ Plug 'tpope/tpope-vim-abolish'
 Plug 'tpope/vim-unimpaired'
 Plug 'chrisbra/csv.vim'
 Plug 'reedes/vim-pencil'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'ryanoasis/vim-devicons'
 Plug 'sharat87/roast.vim'
