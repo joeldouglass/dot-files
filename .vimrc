@@ -62,7 +62,7 @@ nnoremap Q <nop>
 map <leader>* *N
 
 " Time - Entry
-map <leader>tn Go( <ESC>"=strftime("%a %m-%d %I:%M %p")<CR>Pa) 
+map <leader>tn Go( <ESC>"=strftime("%a %m-%d-%Y %I:%M %p")<CR>Pa) 
 map <leader>tt 0f)w"zy$G<ESC><leader>tn<C-R>z
 
 " Remap scrolling to be faster
@@ -113,6 +113,7 @@ nmap ,m :call SwitchBuffer()<CR>
 
 filetype plugin on
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+autocmd FileType md setlocal wrap
 
 " Specify a directory for plugins (for Neovim: ~/.local/share/nvim/plugged)
 call plug#begin('~/.vim/plugged')
