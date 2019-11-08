@@ -1,18 +1,25 @@
 [user]
-	name = Joel Douglass
-	email = joel.douglass@velir.com
+  name = Joel Douglass
+  email = joel.douglass@velir.com
 [alias]
-	graph = log --decorate --abbrev-commit --oneline --graph
+  graph = log --graph --pretty=format:'%Cred%h%Creset - %Cgreen(%ad)%C(yellow)%d%Creset %s %C(bold blue)<%an>%Creset' --abbrev-commit --date=local
+  co = checkout
+  ci = commit
+  st = status
 [difftool]
-	prompt = false
+  prompt = false
 [core]
-	visual = vim
-	editor = vim
-	autocrlf = false
-	longpaths = true
+  visual = vim
+  editor = vim
+  autocrlf = false
+  longpaths = true
 [push]
-	default = matching
+  default = matching
+[merge]
+  tool = vimdiff
+  conflictstyle = diff3
 [mergetool]
-	keepBackup = false
+  prompt = false
+  keepBackup = false
 [oh-my-zsh]
-	hide-dirty = 1
+  hide-dirty = 1

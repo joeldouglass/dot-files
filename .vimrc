@@ -82,9 +82,10 @@ noremap <leader>9 9gt
 noremap <leader>0 :tablast<cr>
 
 " vimdiff diffget mappings.
-map <leader>ml :diffget LOCAL<CR>:diffupdate<CR>
-map <leader>mb :diffget BASE<CR>:diffupdate<CR>
-map <leader>mr :diffget REMOTE<CR>:diffupdate<CR>
+nnoremap <leader>gd :Gvdiff<CR>
+nnoremap gdh :diffget LOCAL<CR>:diffupdate<CR>
+nnoremap gdb :diffget BASE<CR>:diffupdate<CR>
+nnoremap gdl :diffget REMOTE<CR>:diffupdate<CR>
 
 noremap <leader>tc :tabclose<cr>
 
@@ -244,6 +245,9 @@ fun! Num()
 endfun
 
 command! Num call Num()
+
+" Fugitive
+command -nargs=* Glg Git! graph <args>
 
 " Pencil
 let g:pencil#textwidth = 100
