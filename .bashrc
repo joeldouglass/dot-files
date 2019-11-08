@@ -179,3 +179,5 @@ nvm use v8.11.1
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 ctags=/usr/local/bin/ctags
+
+export PATH="$PATH:/Applications/DevDesktop/tools"
