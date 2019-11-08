@@ -123,7 +123,7 @@ Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 Plug 'moll/vim-node'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'vim-syntastic/syntastic'
+"Plug 'vim-syntastic/syntastic'
 Plug 'scrooloose/nerdcommenter'
 Plug 'jalvesaq/Nvim-R'
 Plug 'mileszs/ack.vim'
@@ -147,6 +147,8 @@ Plug 'junegunn/fzf.vim'
 Plug 'ryanoasis/vim-devicons'
 Plug 'sharat87/roast.vim'
 Plug 'JamshedVesuna/vim-markdown-preview'
+Plug 'dense-analysis/ale'
+
 
 " Initialize plugin system
 call plug#end()
@@ -221,6 +223,7 @@ autocmd FileType reason map <buffer> <C-A><C-F> :ReasonPrettyPrint<cr>
 " Disable auto comment
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
+
 fun! TrimWhitespace()
   let l:save = winsaveview()
   %s/\s\+$//e
@@ -276,5 +279,13 @@ set tags=tags
 
 " Markdown
 let vim_markdown_preview_github=1
+
+" Ale
+let g:ale_fixers = {
+ \ 'javascript': ['prettier', 'eslint']
+ \ }
+
+let g:ale_fix_on_save = 1
+
 
 command! PyBr :normal Oimport pdb;pdb.set_trace()<ESC>
