@@ -122,10 +122,10 @@ mnt-vbox-share() {
   fi
 }
 
-alias tma='tmux attach -t $1'
-if [ -f /etc/bash_completion.d/tmux-attach ]; then
-  . /etc/bash_completion.d/tmux-attach
-fi
+#alias tma='tmux attach -t $1'
+#if [ -f /etc/bash_completion.d/tmux-attach ]; then
+  #. /etc/bash_completion.d/tmux-attach
+#fi
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert

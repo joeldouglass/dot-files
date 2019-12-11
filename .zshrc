@@ -86,6 +86,11 @@ source $ZSH/oh-my-zsh.sh
 # ssh
 export SSH_KEY_PATH="~/.ssh/rsa_id"
 
+export JAVA_HOME="/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/"
+
+# Apps Repo
+export APPS_HOME="$HOME/Projects/apps"
+
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
@@ -113,14 +118,14 @@ alias vim="stty stop '' -ixoff ; vim"
 autoload bashcompinit
 bashcompinit
 
-source /etc/bash_completion.d/tma
-alias tma='tmux attach -t $1'
+#source /etc/bash_completion.d/tma
+#alias tma='tmux attach -t $1'
 
 export NVM_DIR="$HOME/.nvm"
-  [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-  [ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"  # This loads nvm bash_completion
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
 export FZF_DEFAULT_COMMAND='ag -g ""'
+
 
 # Windows VM commands
 alias winmnt="mount_smbfs //'DESKTOP-0NAOUDN;MacGuest':Passw0rd@windev/Projects ~/mnt/windev"
