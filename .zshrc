@@ -88,8 +88,7 @@ export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 export JAVA_HOME="/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/"
 
-# Apps Repo
-export APPS_HOME="$HOME/Projects/apps"
+alias dockerproxy="socat TCP-LISTEN:2375,reuseaddr,fork UNIX-CONNECT:/var/run/docker.sock &"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -121,6 +120,11 @@ bashcompinit
 #source /etc/bash_completion.d/tma
 #alias tma='tmux attach -t $1'
 
+# Docker completion
+#fpath=(~/.zsh/completion $fpath)
+
+#autoload -Uz compinit $$ compinit -i
+
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
@@ -139,3 +143,12 @@ set -o vi
 export FZF_DEFAULT_OPS="--extended"
 
 export PATH=/opt/local/bin:/opt/local/sbin:$PATH
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+if [ /usr/local/bin/kubectl ]; then source <(kubectl completion zsh); fi
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/joeldouglass/Tools/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/joeldouglass/Tools/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/joeldouglass/Tools/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/joeldouglass/Tools/google-cloud-sdk/completion.zsh.inc'; fi
