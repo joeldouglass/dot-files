@@ -114,6 +114,9 @@ zle -N zle-keymap-select
 # Pass crtl s through
 alias vim="stty stop '' -ixoff ; vim"
 
+# ls aliases
+alias lt="ls -lat"
+
 autoload bashcompinit
 bashcompinit
 
@@ -143,9 +146,12 @@ set -o vi
 export FZF_DEFAULT_OPS="--extended"
 
 export PATH=/opt/local/bin:/opt/local/sbin:$PATH
+export PATH=/usr/local/opt/ruby/bin:$PATH
+export PATH=/usr/local/lib/ruby/gems/2.6.0/bin:$PATH
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 if [ /usr/local/bin/kubectl ]; then source <(kubectl completion zsh); fi
+if [ /usr/local/bin/helm ]; then source <(helm completion zsh); fi
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/joeldouglass/Tools/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/joeldouglass/Tools/google-cloud-sdk/path.zsh.inc'; fi
