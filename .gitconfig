@@ -6,6 +6,8 @@
   co = checkout
   ci = commit
   st = status
+  fe = fetch
+  rb = rebase
 [difftool]
   prompt = false
 [core]
