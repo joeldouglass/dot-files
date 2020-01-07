@@ -1,4 +1,4 @@
-set encoding=utf-8
+
 set nofsync
 
 set path+=**
@@ -111,8 +111,12 @@ endfunction
 
 nmap ,m :call SwitchBuffer()<CR>
 
+au FileType xml setlocal equalprg=xmllint\ --format\ --recover\ -\ 2>/dev/null
+
 filetype plugin on
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+autocmd BufNewFile,BufReadPost Jenkinsfile set filetype=groovy
+autocmd BufNewFile,BufReadPost DockerFile.* set filetype=dockerfile
 autocmd FileType md setlocal wrap
 
 " Specify a directory for plugins (for Neovim: ~/.local/share/nvim/plugged)
@@ -148,6 +152,8 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'sharat87/roast.vim'
 Plug 'JamshedVesuna/vim-markdown-preview'
 Plug 'dense-analysis/ale'
+Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
+Plug 'ekalinin/Dockerfile.vim'
 
 
 " Initialize plugin system
@@ -282,10 +288,50 @@ let vim_markdown_preview_github=1
 
 " Ale
 let g:ale_fixers = {
- \ 'javascript': ['prettier', 'eslint']
+ \ 'javascript': ['prettier', 'eslint'],
  \ }
 
 let g:ale_fix_on_save = 1
 
+" Coc
+set nobackup
+set nowritebackup
+set cmdheight=2
+set updatetime=300
+set shortmess+=c
+set signcolumn=yes
 
+" use <tab> for trigger completion and navigate to the next complete item
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~ '\s'
+endfunction
+
+inoremap <silent><expr> <Tab>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<Tab>" :
+      \ coc#refresh()
+
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
+" Coc only does snippet and additional edit on confirm.
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Remap for rename current word
+nmap <leader>rn <Plug>(coc-rename)
+
+" Show all diagnostics
+nnoremap <silent> ,d  :<C-u>CocList diagnostics<cr>
+" Find symbol of current document
+nnoremap <silent> ,o  :<C-u>CocList outline<cr>
+" Search workspace symbols
+nnoremap <silent> ,s  :<C-u>CocList -I symbols<cr>
+
+" Python Breakpoint
 command! PyBr :normal Oimport pdb;pdb.set_trace()<ESC>
+
