@@ -1,5 +1,6 @@
 
 set nofsync
+set noswapfile
 
 set path+=**
 
@@ -43,8 +44,7 @@ set autoread
 set statusline=
 set statusline+=\ %m%r
 set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%{ObsessionStatus()}
+set statusline+=%{coc#status()}
 set statusline+=%*
 set statusline+=\ %f
 set statusline+=%=L:\ %P/%L\ C:\ %c
@@ -151,7 +151,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'ryanoasis/vim-devicons'
 Plug 'sharat87/roast.vim'
 Plug 'JamshedVesuna/vim-markdown-preview'
-Plug 'dense-analysis/ale'
+"Plug 'dense-analysis/ale'
 Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
 Plug 'ekalinin/Dockerfile.vim'
 
@@ -199,6 +199,8 @@ let g:tern_show_argument_hints='on_hold'
 " Airline
 let g:airline_powerline_fonts = 1
 let g:airline_theme = 'cool'
+let g:airline_section_warning = "%{coc#status()}"
+
 set laststatus=2
 
 " CamelCaseMotion
@@ -294,6 +296,9 @@ let g:ale_fixers = {
 let g:ale_fix_on_save = 1
 
 " Coc
+
+let g:airline#extensions#coc#enabled = 1
+
 set nobackup
 set nowritebackup
 set cmdheight=2
@@ -334,6 +339,12 @@ nmap <leader>ac  <Plug>(coc-codeaction)
 " Fix autofix problem of current line
 nmap <leader>qf  <Plug>(coc-fix-current)
 
+" Use `:Format` to format current buffer
+command! -nargs=0 Format :call CocAction('format')
+
+" use `:OR` for organize import of current buffer
+command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.organizeImport')
+
 " Show commands
 nnoremap <silent> ,c  :<C-u>CocList commands<cr>
 " Show all diagnostics
@@ -342,7 +353,8 @@ nnoremap <silent> ,d  :<C-u>CocList diagnostics<cr>
 nnoremap <silent> ,o  :<C-u>CocList outline<cr>
 " Search workspace symbols
 nnoremap <silent> ,s  :<C-u>CocList -I symbols<cr>
+" Show commands
+nnoremap <silent> ,l  :<C-u>CocList location<cr>
 
 " Python Breakpoint
 command! PyBr :normal Oimport pdb;pdb.set_trace()<ESC>
-
