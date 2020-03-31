@@ -10,6 +10,7 @@
   rb = rebase
 [difftool]
   prompt = false
+  tool = bc3
 [core]
   visual = vim
   editor = vim
@@ -18,10 +19,11 @@
 [push]
   default = matching
 [merge]
-  tool = vimdiff
-  conflictstyle = diff3
+  tool = bc3
 [mergetool]
   prompt = false
   keepBackup = false
 [oh-my-zsh]
   hide-dirty = 1
+[diff "sopsdiffer"]
+	textconv = sops -d

@@ -56,6 +56,10 @@ nmap <silent> <leader>ev :e $MYVIMRC<CR>
 nmap <silent> <leader>rv :so $MYVIMRC<CR>
 nmap <silent> <leader>/ :nohlsearch<CR>
 
+" Swap mark commands
+onoremap ' `
+onoremap ` '
+
 " Disable ex mode
 nnoremap Q <nop>
 
@@ -68,6 +72,10 @@ map <leader>tt 0f)w"zy$G<ESC><leader>tn<C-R>z
 " Remap scrolling to be faster
 noremap <C-E> 10<C-E>
 noremap <C-Y> 10<C-Y>
+
+" Bigger up and down jumps
+noremap ,j 10j
+noremap ,k 10k
 
 " Go to tab by number
 noremap <leader>1 1gt
@@ -154,6 +162,8 @@ Plug 'JamshedVesuna/vim-markdown-preview'
 "Plug 'dense-analysis/ale'
 Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
 Plug 'ekalinin/Dockerfile.vim'
+Plug 'leafgarland/typescript-vim'
+Plug 'peitalin/vim-jsx-typescript'
 
 
 " Initialize plugin system
@@ -165,6 +175,7 @@ let NERDTreeShowHidden=1
 map ,n :NERDTreeToggle<CR>
 let g:NERDTreeNodeDelimiter = "\u00a0"
 let NERDTreeRespectWildIgnore=1
+let g:NERDTreeWinSize=60
 
 " FZF
 nnoremap ,h :History<CR>
@@ -317,6 +328,8 @@ inoremap <silent><expr> <Tab>
       \ <SID>check_back_space() ? "\<Tab>" :
       \ coc#refresh()
 
+inoremap <silent><expr> <c-n> coc#refresh()
+
 " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
 " Coc only does snippet and additional edit on confirm.
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
@@ -330,6 +343,15 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
 
 " Remap for rename current word
 nmap <leader>rn <Plug>(coc-rename)
@@ -344,6 +366,8 @@ command! -nargs=0 Format :call CocAction('format')
 
 " use `:OR` for organize import of current buffer
 command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.organizeImport')
+
+command! -nargs=0 UpdatePackageName :call CocAction('runCommand', 'editor.action.organizeImport')
 
 " Show commands
 nnoremap <silent> ,c  :<C-u>CocList commands<cr>

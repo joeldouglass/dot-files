@@ -133,6 +133,7 @@ export NVM_DIR="$HOME/.nvm"
 
 export FZF_DEFAULT_COMMAND='ag -g ""'
 
+export PATH=$HOME/bin:$PATH
 
 # Windows VM commands
 alias winmnt="mount_smbfs //'DESKTOP-0NAOUDN;MacGuest':Passw0rd@windev/Projects ~/mnt/windev"
@@ -158,3 +159,6 @@ if [ -f '/Users/joeldouglass/Tools/google-cloud-sdk/path.zsh.inc' ]; then . '/Us
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/joeldouglass/Tools/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/joeldouglass/Tools/google-cloud-sdk/completion.zsh.inc'; fi
+
+GPG_TTY=$(tty)
+export GPG_TTY
