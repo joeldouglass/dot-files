@@ -44,7 +44,6 @@ set autoread
 set statusline=
 set statusline+=\ %m%r
 set statusline+=%#warningmsg#
-set statusline+=%{coc#status()}
 set statusline+=%*
 set statusline+=\ %f
 set statusline+=%=L:\ %P/%L\ C:\ %c
@@ -123,7 +122,7 @@ au FileType xml setlocal equalprg=xmllint\ --format\ --recover\ -\ 2>/dev/null
 
 filetype plugin on
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
-autocmd BufNewFile,BufReadPost Jenkinsfile set filetype=groovy
+autocmd BufNewFile,BufReadPost *.Jenkinsfile set filetype=groovy
 autocmd BufNewFile,BufReadPost DockerFile.* set filetype=dockerfile
 autocmd FileType md setlocal wrap
 
@@ -164,6 +163,8 @@ Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
 Plug 'ekalinin/Dockerfile.vim'
 Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
+Plug 'udalov/kotlin-vim'
+Plug 'kkoomen/vim-doge'
 
 
 " Initialize plugin system
@@ -181,6 +182,20 @@ let g:NERDTreeWinSize=60
 nnoremap ,h :History<CR>
 nnoremap ,b :Buffers<CR>
 nnoremap ,f :Files<CR>
+
+function! s:build_quickfix_list(lines)
+  call setqflist(map(copy(a:lines), '{ "filename": v:val }'))
+  copen
+  cc
+endfunction
+
+let g:fzf_action = {
+  \ 'ctrl-q': function('s:build_quickfix_list'),
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-x': 'split',
+  \ 'ctrl-v': 'vsplit' }
+
+let $FZF_DEFAULT_OPTS = '--bind ctrl-a:select-all'
 
 " Syntastic
 let g:syntastic_always_populate_loc_list = 1
@@ -210,7 +225,6 @@ let g:tern_show_argument_hints='on_hold'
 " Airline
 let g:airline_powerline_fonts = 1
 let g:airline_theme = 'cool'
-let g:airline_section_warning = "%{coc#status()}"
 
 set laststatus=2
 
@@ -305,6 +319,7 @@ let g:ale_fixers = {
  \ }
 
 let g:ale_fix_on_save = 1
+
 
 " Coc
 

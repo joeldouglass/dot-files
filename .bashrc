@@ -175,7 +175,7 @@ complete -F _watson_complete w
 stty -ixon
 
 # set current node version
-nvm use v8.11.1
+nvm use 12
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 ctags=/usr/local/bin/ctags

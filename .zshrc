@@ -131,7 +131,6 @@ bashcompinit
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
-export FZF_DEFAULT_COMMAND='ag -g ""'
 
 export PATH=$HOME/bin:$PATH
 
@@ -142,9 +141,18 @@ alias winsave="VBoxManage controlvm Windows savestate"
 alias winstate="VBoxManage showvminfo Windows | grep 'State'"
 alias winunplug="VBoxManage controlvm Windows poweroff"
 
+alias bc3="bcomp"
+
+alias ta="tamrapps"
+
 set -o vi
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export FZF_DEFAULT_COMMAND='ag -g ""'
 export FZF_DEFAULT_OPS="--extended"
+
+source /Users/joeldouglass/sandbox/fzf-tab-completion/zsh/fzf-zsh-completion.sh
+bindkey '^I' fzf_completion
 
 export PATH=/opt/local/bin:/opt/local/sbin:$PATH
 export PATH=/usr/local/opt/ruby/bin:$PATH

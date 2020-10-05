@@ -32,5 +32,18 @@
 		"snippet": "\ue60b",
 		"typeParameter": "\uf728",
 		"default": "\uf29c"
-	}
+  },
+  "java.errors.incompleteClasspath.severity": "ignore",
+  "java.jdt.ls.vmargs": "-Dfile.encoding=UTF-8 -Xmx5G",
+  "java.home": "/Library/Java/JavaVirtualMachines/jdk-11.0.2.jdk/Contents/Home",
+  "java.configuration.runtimes": [
+    {
+      "name": "JavaSE-1.8",
+      "path": "/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home"
+    },
+    {
+      "name": "JavaSE-11",
+      "path": "/Library/Java/JavaVirtualMachines/jdk-11.0.2.jdk/Contents/Home"
+    }
+  ]
 }

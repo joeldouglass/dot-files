@@ -8,9 +8,6 @@
   st = status
   fe = fetch
   rb = rebase
-[difftool]
-  prompt = false
-  tool = bc3
 [core]
   visual = vim
   editor = vim
@@ -21,9 +18,11 @@
 [merge]
   tool = bc3
 [mergetool]
-  prompt = false
+  tool = bc3
   keepBackup = false
 [oh-my-zsh]
   hide-dirty = 1
 [diff "sopsdiffer"]
 	textconv = sops -d
+[diff]
+	tool = bc3
