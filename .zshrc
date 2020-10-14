@@ -147,6 +147,8 @@ alias ta="tamrapps"
 
 set -o vi
 
+bindkey -M vicmd v edit-command-line
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_COMMAND='ag -g ""'
 export FZF_DEFAULT_OPS="--extended"

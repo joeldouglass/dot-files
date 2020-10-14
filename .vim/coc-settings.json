@@ -1,5 +1,6 @@
 {
   "suggest.autoTrigger": "none",
+  "coc.preferences.floatQuickpick": false,
   "list.nextKeymap": "<C-n>",
   "list.previousKeymap": "<C-p>",
   "list.maxHeight": 15,

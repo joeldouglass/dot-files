@@ -48,6 +48,8 @@ set statusline+=%*
 set statusline+=\ %f
 set statusline+=%=L:\ %P/%L\ C:\ %c
 
+:set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
+
 let mapleader=" "
 let maplocalleader="\\"
 
@@ -190,7 +192,7 @@ function! s:build_quickfix_list(lines)
 endfunction
 
 let g:fzf_action = {
-  \ 'ctrl-q': function('s:build_quickfix_list'),
+  \ 'ctrl-o': function('s:build_quickfix_list'),
   \ 'ctrl-t': 'tab split',
   \ 'ctrl-x': 'split',
   \ 'ctrl-v': 'vsplit' }
@@ -349,9 +351,18 @@ inoremap <silent><expr> <c-n> coc#refresh()
 " Coc only does snippet and additional edit on confirm.
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
-" Use `[g` and `]g` to navigate diagnostics
-nmap <silent> [d <Plug>(coc-diagnostic-prev)
-nmap <silent> ]d <Plug>(coc-diagnostic-next)
+nmap <silent> [d <Plug>(coc-diagnostic-prev-error)
+nmap <silent> ]d <Plug>(coc-diagnostic-next-error)
+
+nmap <silent> [cd :<C-u>CocPrev diagnostics<cr>
+nmap <silent> ]cd :<C-u>CocNext diagnostics<cr>
+nmap <silent> [Cd :<C-u>CocPrev diagnostics<cr>
+nmap <silent> ]Cd :<C-u>CocNext diagnostics<cr>
+
+nmap <silent> [cl :<C-u>CocPrev location<cr>
+nmap <silent> ]cl :<C-u>CocNext location<cr>
+nmap <silent> [Cl :<C-u>CocPrev location<cr>
+nmap <silent> ]Cl :<C-u>CocNext location<cr>
 
 " Remap keys for gotos
 nmap <silent> gd <Plug>(coc-definition)
@@ -371,8 +382,16 @@ endfunction
 " Remap for rename current word
 nmap <leader>rn <Plug>(coc-rename)
 
-" Remap for do codeAction of current line
-nmap <leader>ac  <Plug>(coc-codeaction)
+" Refactor current symbol
+nmap <leader>rs <Plug>(coc-refactor)
+
+" Remap for do codeAction of current line (mnemonic: (l)ine (a)ction
+nmap <leader>la  <Plug>(coc-codeaction-line)
+" Remap for do codeAction of file (mnemonic: (f)ile (a)ction
+nmap <leader>fa  <Plug>(coc-codeaction)
+" Remap for do codeAction of selection (mnemonic: (s)elected (a)ction
+nmap <leader>sa  <Plug>(coc-codeaction-selected)
+xmap <leader>sa  <Plug>(coc-codeaction-selected)
 " Fix autofix problem of current line
 nmap <leader>qf  <Plug>(coc-fix-current)
 
