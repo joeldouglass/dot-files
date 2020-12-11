@@ -3,6 +3,8 @@
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
+# Google creds
+export GOOGLE_APPLICATION_CREDENTIALS=$HOME/.config/gcloud/application_default_credentials.json
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -158,7 +160,7 @@ bindkey '^I' fzf_completion
 
 export PATH=/opt/local/bin:/opt/local/sbin:$PATH
 export PATH=/usr/local/opt/ruby/bin:$PATH
-export PATH=/usr/local/lib/ruby/gems/2.6.0/bin:$PATH
+export PATH=/usr/local/lib/ruby/gems/2.7.0/bin:$PATH
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 if [ /usr/local/bin/kubectl ]; then source <(kubectl completion zsh); fi
@@ -169,6 +171,25 @@ if [ -f '/Users/joeldouglass/Tools/google-cloud-sdk/path.zsh.inc' ]; then . '/Us
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/joeldouglass/Tools/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/joeldouglass/Tools/google-cloud-sdk/completion.zsh.inc'; fi
+
+# c - browse chrome history
+chrome_history() {
+  local cols sep
+  cols=$(( COLUMNS / 3 ))
+  sep='{::}'
+
+  cp -f $HOME/Library/Application\ Support/Google/Chrome/Profile\ 5/History /tmp/h
+
+  sqlite3 -separator $sep /tmp/h \
+    "select substr(title, 1, $cols), url
+     from urls order by last_visit_time desc" |
+  awk -F $sep '{printf "%-'$cols's  \x1b[36m%s\x1b[m\n", $1, $2}' |
+  fzf --ansi --multi | sed 's#.*\(https*://\)#\1#' | xargs open
+}
+
+zle -N chrome_history{,}
+
+bindkey ^P chrome_history
 
 GPG_TTY=$(tty)
 export GPG_TTY
