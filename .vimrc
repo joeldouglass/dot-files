@@ -124,7 +124,7 @@ au FileType xml setlocal equalprg=xmllint\ --format\ --recover\ -\ 2>/dev/null
 
 filetype plugin on
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
-autocmd BufNewFile,BufReadPost *.Jenkinsfile set filetype=groovy
+autocmd BufNewFile,BufReadPost *Jenkinsfile* set filetype=groovy
 autocmd BufNewFile,BufReadPost DockerFile.* set filetype=dockerfile
 autocmd FileType md setlocal wrap
 
@@ -153,7 +153,7 @@ Plug 'tpope/vim-ragtag'
 Plug 'tpope/vim-obsession'
 Plug 'tpope/tpope-vim-abolish'
 Plug 'tpope/vim-unimpaired'
-Plug 'chrisbra/csv.vim'
+"Plug 'chrisbra/csv.vim'
 Plug 'reedes/vim-pencil'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -167,6 +167,7 @@ Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
 Plug 'udalov/kotlin-vim'
 Plug 'kkoomen/vim-doge'
+Plug 'puremourning/vimspector'
 
 
 " Initialize plugin system
@@ -403,6 +404,8 @@ command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.organizeImport
 
 command! -nargs=0 UpdatePackageName :call CocAction('runCommand', 'editor.action.organizeImport')
 
+command! -nargs=0 PomRefresh :call CocAction('runCommand', 'java.projectConfiguration.update')
+
 " Show commands
 nnoremap <silent> ,c  :<C-u>CocList commands<cr>
 " Show all diagnostics
@@ -416,3 +419,11 @@ nnoremap <silent> ,l  :<C-u>CocList location<cr>
 
 " Python Breakpoint
 command! PyBr :normal Oimport pdb;pdb.set_trace()<ESC>
+
+" Vimspector
+nmap <leader>vb <Plug>VimspectorToggleBreakpoint
+nmap <leader>vc <Plug>VimspectorToggleConditionalBreakpoint
+nmap <F8> <Plug>VimspectorContinue
+nmap <F9> <Plug>VimspectorStepOut
+nmap <F10> <Plug>VimspectorStepOver
+nmap <F11> <Plug>VimspectorStepInto
