@@ -1,0 +1,17 @@
+#! /bin/sh
+
+BRANCH=$(git rev-parse --abbrev-ref HEAD)
+REMOTE=$(git config --get remote.origin.url)
+
+# Find the repo name
+[[ "$REMOTE" =~ [^:]*:([^.]*).* ]]
+
+REPO_NAME=${BASH_REMATCH[1]}
+GITHUB_URL="https://github.com/$REPO_NAME"
+PR_URL="$GITHUB_URL/compare/$BRANCH?expand=1"
+
+echo "Pushing $BRANCH"
+
+git push -u origin $BRANCH
+
+open "$PR_URL"

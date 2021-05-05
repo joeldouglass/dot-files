@@ -5,6 +5,7 @@
 export ZSH="$HOME/.oh-my-zsh"
 # Google creds
 export GOOGLE_APPLICATION_CREDENTIALS=$HOME/.config/gcloud/application_default_credentials.json
+export HELM_EXPERIMENTAL_OCI=1
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,

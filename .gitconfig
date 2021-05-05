@@ -8,6 +8,7 @@
   st = status
   fe = fetch
   rb = rebase
+  dif= difftool --dir-diff
 [core]
   visual = vim
   editor = vim
