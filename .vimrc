@@ -168,6 +168,10 @@ Plug 'peitalin/vim-jsx-typescript'
 Plug 'udalov/kotlin-vim'
 Plug 'kkoomen/vim-doge'
 Plug 'puremourning/vimspector'
+Plug 'prettier/vim-prettier', {
+  \ 'do': 'yarn install',
+  \ 'branch': 'release/0.x'
+  \ }
 
 
 " Initialize plugin system
@@ -207,6 +211,7 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_loc_list_height = 3
+
 
 " Vim-Node
 autocmd User Node
@@ -323,6 +328,9 @@ let g:ale_fixers = {
 
 let g:ale_fix_on_save = 1
 
+" Prettier
+let g:prettier#autoformat = 0
+
 
 " Coc
 
@@ -333,18 +341,26 @@ set nowritebackup
 set cmdheight=2
 set updatetime=300
 set shortmess+=c
-set signcolumn=yes
 
-" use <tab> for trigger completion and navigate to the next complete item
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~ '\s'
-endfunction
+" Always show the signcolumn, otherwise it would shift the text each time
+" diagnostics appear/become resolved.
+if has("nvim-0.5.0") || has("patch-8.1.1564")
+  " Recently vim can merge signcolumn and number column into one
+  set signcolumn=number
+else
+  set signcolumn=yes
+endif
 
-inoremap <silent><expr> <Tab>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<Tab>" :
-      \ coc#refresh()
+"" use <tab> for trigger completion and navigate to the next complete item
+"function! s:check_back_space() abort
+  "let col = col('.') - 1
+  "return !col || getline('.')[col - 1]  =~ '\s'
+"endfunction
+
+"inoremap <silent><expr> <Tab>
+      "\ pumvisible() ? "\<C-n>" :
+      "\ <SID>check_back_space() ? "\<Tab>" :
+      "\ coc#refresh()
 
 inoremap <silent><expr> <c-n> coc#refresh()
 

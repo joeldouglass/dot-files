@@ -1,5 +1,6 @@
 {
   "suggest.autoTrigger": "none",
+  "coc.preferences.triggerSignatureHelp": true,
   "coc.preferences.floatQuickpick": false,
   "list.nextKeymap": "<C-n>",
   "list.previousKeymap": "<C-p>",
@@ -34,6 +35,8 @@
 		"typeParameter": "\uf728",
 		"default": "\uf29c"
   },
+  "java.completion.enabled": true,
+  "java.signatureHelp.enabled": true,
   "java.errors.incompleteClasspath.severity": "ignore",
   "java.jdt.ls.vmargs": "-Dfile.encoding=UTF-8 -Xmx5G",
   "java.home": "/Library/Java/JavaVirtualMachines/jdk-11.0.2.jdk/Contents/Home",
@@ -45,6 +48,10 @@
     {
       "name": "JavaSE-11",
       "path": "/Library/Java/JavaVirtualMachines/jdk-11.0.2.jdk/Contents/Home"
+    },
+    {
+      "name": "JavaSE-13",
+      "path": "/Library/Java/JavaVirtualMachines/jdk-13.0.1.jdk/Contents/Home"
     }
   ]
 }

@@ -59,6 +59,7 @@ HYPHEN_INSENSITIVE="true"
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
+ZSH_DISABLE_COMPFIX="true"
 
 # Which plugins would you like to load?
 # Standard plugins can be found in ~/.oh-my-zsh/plugins/*
@@ -168,10 +169,10 @@ if [ /usr/local/bin/kubectl ]; then source <(kubectl completion zsh); fi
 if [ /usr/local/bin/helm ]; then source <(helm completion zsh); fi
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/joeldouglass/Tools/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/joeldouglass/Tools/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f '/Users/joel.douglass/Tools/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/joel.douglass/Tools/google-cloud-sdk/path.zsh.inc'; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/Users/joeldouglass/Tools/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/joeldouglass/Tools/google-cloud-sdk/completion.zsh.inc'; fi
+if [ -f '/Users/joel.douglass/Tools/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/joel.douglass/Tools/google-cloud-sdk/completion.zsh.inc'; fi
 
 # c - browse chrome history
 chrome_history() {
