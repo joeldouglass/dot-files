@@ -193,5 +193,27 @@ zle -N chrome_history{,}
 
 bindkey ^P chrome_history
 
+# open project
+open_proj() {
+  read dir
+  PROJ=`basename $dir`
+
+  cd $dir
+  if [[ -n $TMUX ]]; then
+    tmux rename-window $PROJ
+  fi
+  zle reset-prompt
+}
+
+find_proj() {
+  find $HOME/Projects -type d -maxdepth 2 | fzf | open_proj
+}
+
+zle -N find_proj{,}
+
+bindkey ^O find_proj
+
+source $HOME/bin/project_functions.sh
+
 GPG_TTY=$(tty)
 export GPG_TTY

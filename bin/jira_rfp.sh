@@ -14,7 +14,7 @@ TRANSITION_ID=$(curl \
    --fail --silent --show-error \
    -X GET \
    -H "Content-Type: application/json" \
-   https://datatamr.atlassian.net/rest/api/2/issue/$ISSUE_KEY/transitions | jq -r '.transitions[] | select(.name == "Ready For Production") | .id')
+   https://datatamr.atlassian.net/rest/api/2/issue/$ISSUE_KEY/transitions | jq -r '.transitions[] | select(.name | test("^Ready For Production$";"i")) | .id')
 
 TRANSITION_DATA=$(cat <<EOF
 {
