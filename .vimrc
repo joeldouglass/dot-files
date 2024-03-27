@@ -136,7 +136,6 @@ Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 Plug 'moll/vim-node'
 Plug 'editorconfig/editorconfig-vim'
-"Plug 'vim-syntastic/syntastic'
 Plug 'scrooloose/nerdcommenter'
 Plug 'jalvesaq/Nvim-R'
 Plug 'mileszs/ack.vim'
@@ -145,33 +144,25 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'qpkorr/vim-bufkill'
 Plug 'godlygeek/tabular'
 Plug 'bkad/CamelCaseMotion'
-Plug 'reasonml-editor/vim-reason'
-Plug 'purescript-contrib/purescript-vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'joeldouglass/vim-fugitive', { 'branch': 'add_tabbed_diff' }
 Plug 'tpope/vim-ragtag'
 Plug 'tpope/vim-obsession'
 Plug 'tpope/tpope-vim-abolish'
 Plug 'tpope/vim-unimpaired'
-"Plug 'chrisbra/csv.vim'
 Plug 'reedes/vim-pencil'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'ryanoasis/vim-devicons'
 Plug 'sharat87/roast.vim'
 Plug 'JamshedVesuna/vim-markdown-preview'
-"Plug 'dense-analysis/ale'
 Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
 Plug 'ekalinin/Dockerfile.vim'
 Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
-Plug 'udalov/kotlin-vim'
 Plug 'kkoomen/vim-doge'
 Plug 'puremourning/vimspector'
-Plug 'prettier/vim-prettier', {
-  \ 'do': 'yarn install',
-  \ 'branch': 'release/0.x'
-  \ }
+Plug 'github/copilot.vim'
 
 
 " Initialize plugin system
@@ -321,17 +312,6 @@ set tags=tags
 " Markdown
 let vim_markdown_preview_github=1
 
-" Ale
-let g:ale_fixers = {
- \ 'javascript': ['prettier', 'eslint'],
- \ }
-
-let g:ale_fix_on_save = 1
-
-" Prettier
-let g:prettier#autoformat = 0
-
-
 " Coc
 
 let g:airline#extensions#coc#enabled = 1
@@ -366,7 +346,7 @@ inoremap <silent><expr> <c-n> coc#refresh()
 
 " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
 " Coc only does snippet and additional edit on confirm.
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm(): "\<CR>"
 
 nmap <silent> [d <Plug>(coc-diagnostic-prev-error)
 nmap <silent> ]d <Plug>(coc-diagnostic-next-error)
@@ -443,3 +423,8 @@ nmap <F8> <Plug>VimspectorContinue
 nmap <F9> <Plug>VimspectorStepOut
 nmap <F10> <Plug>VimspectorStepOver
 nmap <F11> <Plug>VimspectorStepInto
+
+" Copilot
+imap <silent><script><expr> <C-L> copilot#Accept("\<CR>")
+let g:copilot_no_tab_map = v:true
+imap <C-N> <Plug>(copilot-next)

@@ -138,16 +138,7 @@ export NVM_DIR="$HOME/.nvm"
 
 export PATH=$HOME/bin:$PATH
 
-# Windows VM commands
-alias winmnt="mount_smbfs //'DESKTOP-0NAOUDN;MacGuest':Passw0rd@windev/Projects ~/mnt/windev"
-alias winon="VBoxManage startvm Windows --type headless"
-alias winsave="VBoxManage controlvm Windows savestate"
-alias winstate="VBoxManage showvminfo Windows | grep 'State'"
-alias winunplug="VBoxManage controlvm Windows poweroff"
-
 alias bc3="bcomp"
-
-alias ta="tamrapps"
 
 set -o vi
 
@@ -157,7 +148,7 @@ bindkey -M vicmd v edit-command-line
 export FZF_DEFAULT_COMMAND='ag -g ""'
 export FZF_DEFAULT_OPS="--extended"
 
-source /Users/joeldouglass/sandbox/fzf-tab-completion/zsh/fzf-zsh-completion.sh
+source /Users/joeldouglass/Projects/fzf-tab-completion/zsh/fzf-zsh-completion.sh
 bindkey '^I' fzf_completion
 
 export PATH=/opt/local/bin:/opt/local/sbin:$PATH
@@ -165,14 +156,6 @@ export PATH=/usr/local/opt/ruby/bin:$PATH
 export PATH=/usr/local/lib/ruby/gems/2.7.0/bin:$PATH
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-if [ /usr/local/bin/kubectl ]; then source <(kubectl completion zsh); fi
-if [ /usr/local/bin/helm ]; then source <(helm completion zsh); fi
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/joel.douglass/Tools/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/joel.douglass/Tools/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/joel.douglass/Tools/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/joel.douglass/Tools/google-cloud-sdk/completion.zsh.inc'; fi
 
 # c - browse chrome history
 chrome_history() {
@@ -206,14 +189,12 @@ open_proj() {
 }
 
 find_proj() {
-  find $HOME/Projects -type d -maxdepth 2 | fzf | open_proj
+  find $HOME/Projects -type d -maxdepth 1 | fzf | open_proj
 }
 
 zle -N find_proj{,}
 
 bindkey ^O find_proj
-
-source $HOME/bin/project_functions.sh
 
 GPG_TTY=$(tty)
 export GPG_TTY
