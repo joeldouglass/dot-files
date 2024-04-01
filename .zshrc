@@ -198,3 +198,5 @@ bindkey ^O find_proj
 
 GPG_TTY=$(tty)
 export GPG_TTY
+
+source $HOME/.zshrc.env

@@ -337,12 +337,9 @@ endif
   "return !col || getline('.')[col - 1]  =~ '\s'
 "endfunction
 
-"inoremap <silent><expr> <Tab>
-      "\ pumvisible() ? "\<C-n>" :
-      "\ <SID>check_back_space() ? "\<Tab>" :
-      "\ coc#refresh()
+inoremap <silent><expr> <C-n> coc#pum#visible() ? coc#pum#next(1) : coc#refresh()
 
-inoremap <silent><expr> <c-n> coc#refresh()
+inoremap <silent><expr> <tab> coc#refresh()
 
 " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
 " Coc only does snippet and additional edit on confirm.
@@ -427,4 +424,3 @@ nmap <F11> <Plug>VimspectorStepInto
 " Copilot
 imap <silent><script><expr> <C-L> copilot#Accept("\<CR>")
 let g:copilot_no_tab_map = v:true
-imap <C-N> <Plug>(copilot-next)
