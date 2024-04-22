@@ -3,6 +3,8 @@
   "coc.preferences.triggerSignatureHelp": true,
   "coc.preferences.floatQuickpick": false,
   "coc.preferences.formatOnSaveFiletypes": ["*"],
+  "list.nextKeymap": "<C-n>",
+  "list.previousKeymap": "<C-p>",
   "list.maxHeight": 15,
   "suggest.completionItemKindLabels": {
     "keyword": "\uf1de",
@@ -49,5 +51,6 @@
       "name": "JavaSE-13",
       "path": "/Library/Java/JavaVirtualMachines/jdk-13.0.1.jdk/Contents/Home"
     }
-  ]
+  ],
+  "tsserver.experimental.enableProjectDiagnostics": true
 }
