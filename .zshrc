@@ -200,3 +200,6 @@ GPG_TTY=$(tty)
 export GPG_TTY
 
 source $HOME/.zshrc.env
+
+nvm use 20
+export JAVA_HOME=$(/usr/libexec/java_home)

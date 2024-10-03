@@ -52,5 +52,6 @@
       "path": "/Library/Java/JavaVirtualMachines/jdk-13.0.1.jdk/Contents/Home"
     }
   ],
-  "tsserver.experimental.enableProjectDiagnostics": true
+  "tsserver.experimental.enableProjectDiagnostics": true,
+  "eslint.experimental.useFlatConfig": true
 }

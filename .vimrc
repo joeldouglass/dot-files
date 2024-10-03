@@ -150,6 +150,7 @@ Plug 'tpope/vim-ragtag'
 Plug 'tpope/vim-obsession'
 Plug 'tpope/tpope-vim-abolish'
 Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-surround'
 Plug 'reedes/vim-pencil'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -212,7 +213,7 @@ autocmd User Node
    \ endif
 
 " Silver searcher
-let g:ackprg = 'ag --nogroup --nocolor --column'
+let g:ackprg = 'rg --vimgrep --no-heading'
 
 " BufKill
 let g:BufKillCreateMappings = 0

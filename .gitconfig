@@ -1,6 +1,6 @@
 [user]
-  name = Joel Douglass
-  email = joel.douglass@velir.com
+	name = Joel Douglass
+	email = jdouglass@savvifi.com
 [alias]
   graph = log --graph --pretty=format:'%Cred%h%Creset - %Cgreen(%ad)%C(yellow)%d%Creset %s %C(bold blue)<%an>%Creset' --abbrev-commit --date=local
   co = checkout
