@@ -8,8 +8,8 @@ require("joel.lazy_init")
 
 -- Settings
 --vim.cmd.colorscheme("tokyonight")
-vim.opt.nu = true                 -- set line numbers -- set line numbers
-vim.opt.relativenumber = true     -- use relative line numbers
+vim.opt.nu = true             -- set line numbers -- set line numbers
+vim.opt.relativenumber = true -- use relative line numbers
 
 -- Diagnostics
 vim.diagnostic.config({
@@ -63,6 +63,7 @@ vim.keymap.set("n", ",m", "<C-6>", { noremap = true, silent = true, desc = "Swit
 -- FZF
 vim.keymap.set("n", ",b", require('fzf-lua').buffers, { desc = "Fzf Buffers" })
 vim.keymap.set("n", ",f", require('fzf-lua').files, { desc = "Fzf History" })
+vim.keymap.set("n", ",d", require('fzf-lua').diagnostics_workspace, { desc = "Fzf Workspace Diagnosics" })
 
 -- Tree
 vim.keymap.set("n", ",n", ":NvimTreeToggle<CR>", { desc = "Fzf History" })
@@ -73,3 +74,14 @@ vim.keymap.set('i', '<C-L>', 'copilot#Accept("\\<CR>")', {
   replace_keycodes = false
 })
 vim.g.copilot_no_tab_map = true
+
+-- Copilot Chat
+vim.keymap.set('n', '<leader>cc', ':CopilotChat<CR>', { desc = "Copilot Chat" })
+
+vim.keymap.set('n', '<leader>ccq', function()
+    local input = vim.fn.input("Quick Chat: ")
+    if input ~= "" then
+      require("CopilotChat").ask(input, { selection = require("CopilotChat.select").buffer })
+    end
+  end,
+  { desc = "CopilotChat - Quick chat" })

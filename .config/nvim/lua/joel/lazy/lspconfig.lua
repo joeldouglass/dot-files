@@ -1,11 +1,11 @@
 return {
   'neovim/nvim-lspconfig',
-  cmd = {'LspInfo', 'LspInstall', 'LspStart'},
-  event = {'BufReadPre', 'BufNewFile'},
+  cmd = { 'LspInfo', 'LspInstall', 'LspStart' },
+  event = { 'BufReadPre', 'BufNewFile' },
   dependencies = {
-    {'hrsh7th/cmp-nvim-lsp'},
-    {'williamboman/mason.nvim'},
-    {'williamboman/mason-lspconfig.nvim'},
+    { 'hrsh7th/cmp-nvim-lsp' },
+    { 'williamboman/mason.nvim' },
+    { 'williamboman/mason-lspconfig.nvim' },
   },
   init = function()
     -- Reserve a space in the gutter
@@ -13,7 +13,6 @@ return {
     vim.opt.signcolumn = 'yes'
   end,
   config = function()
-
     --local capabilities = require('blink.cmp').get_lsp_capabilities()
     local lspconfig = require('lspconfig')
     local lsp_defaults = lspconfig.util.default_config
@@ -31,7 +30,7 @@ return {
     vim.api.nvim_create_autocmd('LspAttach', {
       desc = 'LSP actions',
       callback = function(event)
-        local opts = {buffer = event.buf}
+        local opts = { buffer = event.buf }
 
         vim.keymap.set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
         vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', opts)
@@ -40,15 +39,14 @@ return {
         vim.keymap.set('n', 'go', '<cmd>lua vim.lsp.buf.type_definition()<cr>', opts)
         vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>', opts)
         vim.keymap.set('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>', opts)
-        vim.keymap.set('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
-        vim.keymap.set({'n', 'x'}, '<F3>', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', opts)
+        vim.keymap.set('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
+        vim.keymap.set({ 'n', 'x' }, '<F3>', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', opts)
 
         vim.keymap.set('n', '<leader>la', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
 
         vim.keymap.set('n', '<leader>ld', function() vim.diagnostic.open_float() end, opts)
         vim.keymap.set('n', '[d', function() vim.diagnostic.goto_prev() end, opts)
         vim.keymap.set('n', ']d', function() vim.diagnostic.goto_next() end, opts)
-
       end,
     })
 
@@ -62,7 +60,5 @@ return {
         end,
       }
     })
-
   end
 }
-
