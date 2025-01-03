@@ -41,15 +41,17 @@ vim.g.ackprg = 'rg --vimgrep --no-heading'
 
 -- Keymaps
 
--- Save
 vim.keymap.set("n", "<C-S>", ":w<CR>", { noremap = true, silent = true, desc = "Save" })
 vim.keymap.set("i", "<C-S>", "<ESC>:w<CR>", { noremap = true, silent = true, desc = "Save" })
-
--- nmap <silent> <leader>/ :nohlsearch<CR>
 vim.keymap.set("n", "<leader>/", ":nohlsearch<CR>", { noremap = true, silent = true, desc = "Clear Highlight" })
-
 vim.keymap.set("n", "<leader>tc", ":tabclose<CR>", { noremap = true, silent = true, desc = "Close Tab" })
 
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = { 'qf' },
+  callback = function()
+    vim.keymap.set('n', 'q', '<cmd>bd<cr>', { silent = true, buffer = true })
+  end,
+})
 
 -- Window movement
 vim.keymap.set("n", "<C-K>", ":wincmd k<CR>", { noremap = true, silent = true, desc = "Move Window Up" })
@@ -64,6 +66,7 @@ vim.keymap.set("n", ",m", "<C-6>", { noremap = true, silent = true, desc = "Swit
 vim.keymap.set("n", ",b", require('fzf-lua').buffers, { desc = "Fzf Buffers" })
 vim.keymap.set("n", ",f", require('fzf-lua').files, { desc = "Fzf History" })
 vim.keymap.set("n", ",d", require('fzf-lua').diagnostics_workspace, { desc = "Fzf Workspace Diagnosics" })
+vim.keymap.set("n", "<leader>la", require('fzf-lua').lsp_code_actions, { desc = "Code actions" })
 
 -- Tree
 vim.keymap.set("n", ",n", ":NvimTreeToggle<CR>", { desc = "Fzf History" })
@@ -76,7 +79,7 @@ vim.keymap.set('i', '<C-L>', 'copilot#Accept("\\<CR>")', {
 vim.g.copilot_no_tab_map = true
 
 -- Copilot Chat
-vim.keymap.set('n', '<leader>cc', ':CopilotChat<CR>', { desc = "Copilot Chat" })
+vim.keymap.set('n', '<leader>ch', ':CopilotChat<CR>', { desc = "Copilot Chat" })
 
 vim.keymap.set('n', '<leader>ccq', function()
     local input = vim.fn.input("Quick Chat: ")
