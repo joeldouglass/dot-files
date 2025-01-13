@@ -1,31 +1,145 @@
 {
     "vim.normalModeKeyBindingsNonRecursive": [
-        {   
-            "before": [",", "n"],
-            "commands": ["workbench.action.toggleSidebarVisibility"]
+        {
+            "before": [
+                ",",
+                "n"
+            ],
+            "commands": [
+                "workbench.action.toggleSidebarVisibility"
+            ]
         },
         {
-            "before": [",", "f"],
-            "commands": ["workbench.action.quickOpen"]
+            "before": [
+                ",",
+                "f"
+            ],
+            "commands": [
+                "workbench.action.quickOpen"
+            ]
         },
         {
-            "before": [",", "b"],
-            "commands": ["workbench.action.showAllEditors"]
+            "before": [
+                ",",
+                "b"
+            ],
+            "commands": [
+                "workbench.action.showAllEditors"
+            ]
         },
         {
-            "before": [",", "c"],
-            "commands": ["workbench.action.toggleAuxiliaryBar"]
+            "before": [
+                ",",
+                "c"
+            ],
+            "commands": [
+                "workbench.action.toggleAuxiliaryBar"
+            ]
         },
         {
-            "before": [",", "m"],
-            "commands": ["workbench.action.openPreviousRecentlyUsedEditor"]
+            "before": [
+                ",",
+                "m"
+            ],
+            "commands": [
+                "workbench.action.openPreviousRecentlyUsedEditor"
+            ]
         },
         {
-            "before": [",", ","],
-            "commands": ["workbench.action.openNextRecentlyUsedEditor"]
+            "before": [
+                ",",
+                ","
+            ],
+            "commands": [
+                "workbench.action.openNextRecentlyUsedEditor"
+            ]
+        },
+        {
+            "before": [
+                ",",
+                "p"
+            ],
+            "commands": [
+                "workbench.action.togglePanel"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "l",
+                "a"
+            ],
+            "commands": [
+                "editor.action.quickFix"
+            ]
+        },
+        {
+            // "before": ["<leader>", "c", "c"],
+            "commands": [
+                "editor.action.commentLine"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "c",
+                "u"
+            ],
+            "commands": [
+                "editor.action.removeCommentLine"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "l",
+                "d"
+            ],
+            "commands": [
+                "editor.action.showHover"
+            ]
         }
     ],
-    "editor.fontSize": 14,
+    "vim.visualModeKeyBindingsNonRecursive": [
+        {
+            "before": [
+                "<leader>",
+                "c",
+                "c"
+            ],
+            "commands": [
+                "editor.action.commentLine"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "c",
+                "u"
+            ],
+            "commands": [
+                "editor.action.removeCommentLine"
+            ]
+        }
+    ],
+    "keyboard.dispatch": "keyCode",
     "workbench.activityBar.orientation": "vertical",
     "workbench.editor.revealIfOpen": true,
+    "editor.lineNumbers": "relative",
+    "vim.leader": "<space>",
+    "editor.fontSize": 14,
+    "terminal.integrated.fontSize": 14,
+    "editor.formatOnSave": true,
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[typescriptreact]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[json]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    }
 }
