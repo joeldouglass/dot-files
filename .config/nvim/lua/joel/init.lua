@@ -66,6 +66,7 @@ vim.keymap.set("n", ",m", "<C-6>", { noremap = true, silent = true, desc = "Swit
 vim.keymap.set("n", ",b", require('fzf-lua').buffers, { desc = "Fzf Buffers" })
 vim.keymap.set("n", ",f", require('fzf-lua').files, { desc = "Fzf History" })
 vim.keymap.set("n", ",d", require('fzf-lua').diagnostics_workspace, { desc = "Fzf Workspace Diagnosics" })
+vim.keymap.set("n", "gr", require('fzf-lua').lsp_references, { desc = "Fzf References" })
 vim.keymap.set("n", "<leader>la", require('fzf-lua').lsp_code_actions, { desc = "Code actions" })
 
 -- Tree

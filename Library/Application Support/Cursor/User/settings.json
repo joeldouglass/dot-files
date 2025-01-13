@@ -1,0 +1,31 @@
+{
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {   
+            "before": [",", "n"],
+            "commands": ["workbench.action.toggleSidebarVisibility"]
+        },
+        {
+            "before": [",", "f"],
+            "commands": ["workbench.action.quickOpen"]
+        },
+        {
+            "before": [",", "b"],
+            "commands": ["workbench.action.showAllEditors"]
+        },
+        {
+            "before": [",", "c"],
+            "commands": ["workbench.action.toggleAuxiliaryBar"]
+        },
+        {
+            "before": [",", "m"],
+            "commands": ["workbench.action.openPreviousRecentlyUsedEditor"]
+        },
+        {
+            "before": [",", ","],
+            "commands": ["workbench.action.openNextRecentlyUsedEditor"]
+        }
+    ],
+    "editor.fontSize": 14,
+    "workbench.activityBar.orientation": "vertical",
+    "workbench.editor.revealIfOpen": true,
+}
