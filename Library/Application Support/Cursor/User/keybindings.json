@@ -23,11 +23,32 @@
     {
         "key": "ctrl+n",
         "command": "selectNextSuggestion",
-        "when": "suggestWidgetVisible"
+        "when": "suggestWidgetVisible || chatInputFocused"
     },
     {
         "key": "ctrl+n",
         "command": "editor.action.triggerSuggest",
         "when": "editorTextFocus && !suggestWidgetVisible"
+    },
+    {
+        "key": "cmd+`",
+        "command": "workbench.action.terminal.focus",
+        "when": "panelOpen"
+    },
+    {
+        "key": "cmd+`",
+        "command": "workbench.action.terminal.toggleTerminal",
+        "when": "!panelOpen"
+    },
+    {
+        "key": "cmd+h",
+        "command": "runCommands",
+        "args": {
+            "commands": [
+                "workbench.action.closePanel",
+                "workbench.action.closeSidebar",
+                "aichat.close-sidebar"
+            ]
+        }
     }
 ]

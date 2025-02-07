@@ -3,42 +3,6 @@
         {
             "before": [
                 ",",
-                "n"
-            ],
-            "commands": [
-                "workbench.action.toggleSidebarVisibility"
-            ]
-        },
-        {
-            "before": [
-                ",",
-                "f"
-            ],
-            "commands": [
-                "workbench.action.quickOpen"
-            ]
-        },
-        {
-            "before": [
-                ",",
-                "b"
-            ],
-            "commands": [
-                "workbench.action.showAllEditors"
-            ]
-        },
-        {
-            "before": [
-                ",",
-                "c"
-            ],
-            "commands": [
-                "workbench.action.toggleAuxiliaryBar"
-            ]
-        },
-        {
-            "before": [
-                ",",
                 "m"
             ],
             "commands": [
@@ -56,15 +20,6 @@
         },
         {
             "before": [
-                ",",
-                "p"
-            ],
-            "commands": [
-                "workbench.action.togglePanel"
-            ]
-        },
-        {
-            "before": [
                 "<leader>",
                 "l",
                 "a"
@@ -74,7 +29,7 @@
             ]
         },
         {
-            // "before": ["<leader>", "c", "c"],
+            "before": ["<leader>", "c", "c"],
             "commands": [
                 "editor.action.commentLine"
             ]
@@ -98,6 +53,26 @@
             "commands": [
                 "editor.action.showHover"
             ]
+        },
+        {
+            "before": ["]", "d"],
+            "commands": ["editor.action.marker.next"]
+        },
+        {
+            "before": ["[", "d"],
+            "commands": ["editor.action.marker.prev"]
+        },
+        {
+            "before": ["g", "r"],
+            "commands": ["editor.action.goToReferences"]
+        },
+        {
+            "before": ["g", "d"],
+            "commands": ["editor.action.goToDeclaration"]
+        },
+        {
+            "before": ["K"],
+            "commands": ["editor.action.showHover"]
         }
     ],
     "vim.visualModeKeyBindingsNonRecursive": [
@@ -141,5 +116,11 @@
     },
     "[json]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
-    }
+    },
+    "files.simpleDialog.enable": true,
+    "files.confirmDelete": false,
+    "workbench.confirmBeforeClose": "never",
+    "explorer.confirmDragAndDrop": false,
+    "files.enableTrash": false,
+    "cursor-retrieval.canAttemptGithubLogin": false
 }
